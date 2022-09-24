@@ -38,7 +38,7 @@
       postfix = if self ? revCount then "${toString self.revCount}_${shortRev}" else "Dirty";
     in {
       # TODO use separate evaluation system?
-      Agda = callCabal2nixWithOptions "Agda" ./. "--flag enable-cluster-counting --flag optimise-heavily" ({
+      Agda = callCabal2nixWithOptions "Agda" ./. "--flag enable-cluster-counting" ({
         mkDerivation = args: final.mkDerivation (args // {
           version = "${args.version}-pre${postfix}";
 
