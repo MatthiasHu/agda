@@ -36,9 +36,9 @@
       shortRev = builtins.substring 0 9 self.rev;
 
       postfix = if self ? revCount then "${toString self.revCount}_${shortRev}" else "Dirty";
-    in {
+
       # TODO use separate evaluation system?
-      Agda = callCabal2nixWithOptions "Agda" ./. "--flag enable-cluster-counting --flag optimise-heavily" ({
+      AgdaWithOptions = options: callCabal2nixWithOptions "Agda" ./. options ({
         mkDerivation = args: final.mkDerivation (args // {
           version = "${args.version}-pre${postfix}";
 
@@ -51,6 +51,10 @@
           doCheck = false;
         });
       });
+
+    in {
+      Agda = AgdaWithOptions "--flag enable-cluster-counting --flag optimise-heavily";
+      AgdaNonOptimized = AgdaWithOptions "--flag enable-cluster-counting";
     };
   };
 }
