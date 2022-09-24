@@ -54,6 +54,9 @@
 
     in {
       Agda = AgdaWithOptions "--flag enable-cluster-counting --flag optimise-heavily";
+
+      # An alternative flake output that compiles faster, mostly for faster testing in CI,
+      # see src/github/workflows/nix.yml .
       AgdaNonOptimized = AgdaWithOptions "--flag enable-cluster-counting";
     };
   };
