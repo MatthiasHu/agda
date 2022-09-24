@@ -7,7 +7,7 @@
     pkgs = import nixpkgs { inherit system; overlays = [ self.overlay ]; };
   in {
     packages = {
-      inherit (pkgs.haskellPackages) Agda;
+      inherit (pkgs.haskellPackages) Agda AgdaNonOptimized;
 
       # TODO agda2-mode
     };
