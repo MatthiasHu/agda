@@ -17,9 +17,9 @@ jobs:
     - name: Nix develop
       run: nix develop --ignore-environment --command fix-whitespace --check
     - name: Nix build
-      run: nix build --verbose --print-build-logs
+      run: nix build --verbose .#AgdaNonOptimized --print-build-logs
     - name: Nix shell
-      run: nix shell --verbose --command agda --version
+      run: nix shell --verbose .#AgdaNonOptimized --command agda --version
 name: Build (nix)
 'on':
   pull_request:
